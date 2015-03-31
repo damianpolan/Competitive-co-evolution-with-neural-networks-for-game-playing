@@ -61,7 +61,7 @@
     <Compile Include="Game\MoveId.cs" />
     <Compile Include="Game\Piece.cs" />
     <Compile Include="Game\Pieces.cs" />
-    <Compile Include="Game\Type.cs" />
+    <Compile Include="Game\MoveType.cs" />
     <Compile Include="Game\VisibleState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

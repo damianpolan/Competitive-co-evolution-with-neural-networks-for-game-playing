@@ -7,6 +7,14 @@ namespace COMP4106_Project.Game
 {
     public class BoardLocation
     {
-        String type;
+        public string type;
+        public int x, y;
+
+        public BoardLocation(int xPos, int yPos)
+        {
+            this.x = xPos;
+            this.y = yPos;
+            this.type = "None";
+        }
     }
 }

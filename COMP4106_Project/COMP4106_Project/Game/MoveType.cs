@@ -5,7 +5,7 @@ using System.Text;
 
 namespace COMP4106_Project.Game
 {
-    public enum Type
+    public enum MoveType
     {
         None, Attack, Move, Defend
     }
