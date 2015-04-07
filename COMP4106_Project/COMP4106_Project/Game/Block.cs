@@ -10,7 +10,7 @@ namespace COMP4106_Project.Game
         public Block(int xPos, int yPos)
             :base(xPos, yPos)
         {
-            base.type = "Block";
+            base.type = "block";
         }
     }
 }

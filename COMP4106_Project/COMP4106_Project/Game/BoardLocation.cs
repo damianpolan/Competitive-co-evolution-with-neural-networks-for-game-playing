@@ -14,7 +14,8 @@ namespace COMP4106_Project.Game
         {
             this.x = xPos;
             this.y = yPos;
-            this.type = "None";
+            this.type = "none";
         }
+
     }
 }

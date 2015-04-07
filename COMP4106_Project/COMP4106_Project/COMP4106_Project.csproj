@@ -57,6 +57,7 @@
     <Compile Include="Game\Board.cs" />
     <Compile Include="Game\BoardLocation.cs" />
     <Compile Include="Game\Direction.cs" />
+    <Compile Include="Game\KingPiece.cs" />
     <Compile Include="Game\Move.cs" />
     <Compile Include="Game\MoveId.cs" />
     <Compile Include="Game\Piece.cs" />
