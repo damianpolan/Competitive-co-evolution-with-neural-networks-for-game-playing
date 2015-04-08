@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="TestingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TestingForm.Designer.cs">
+      <DependentUpon>TestingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Game\AI.cs" />
     <Compile Include="Game\Block.cs" />
@@ -59,7 +59,6 @@
     <Compile Include="Game\Direction.cs" />
     <Compile Include="Game\KingPiece.cs" />
     <Compile Include="Game\Move.cs" />
-    <Compile Include="Game\MoveId.cs" />
     <Compile Include="Game\Piece.cs" />
     <Compile Include="Game\Pieces.cs" />
     <Compile Include="Game\MoveType.cs" />

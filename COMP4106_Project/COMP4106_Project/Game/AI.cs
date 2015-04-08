@@ -14,6 +14,6 @@ namespace COMP4106_Project.Game
             this.player = player;
         }
 
-        public abstract MoveId[] requestMove(VisibleState state);
+        public abstract Move[] requestMove(VisibleState state);
     }
 }

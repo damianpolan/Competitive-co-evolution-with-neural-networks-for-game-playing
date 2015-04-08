@@ -9,9 +9,11 @@ namespace COMP4106_Project.Game
     {
         public Direction direction;
         public MoveType type;
+        public int pieceId;
 
-        public Move(MoveType moveType, Direction moveDirection)
+        public Move(int pieceId, MoveType moveType, Direction moveDirection)
         {
+            this.pieceId = pieceId;
             this.type = moveType;
             this.direction = moveDirection;
         }

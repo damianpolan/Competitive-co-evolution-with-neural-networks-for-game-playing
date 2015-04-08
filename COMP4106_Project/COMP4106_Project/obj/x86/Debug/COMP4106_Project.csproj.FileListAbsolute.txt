@@ -1,0 +1,6 @@
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.Properties.Resources.resources
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.csproj.GenerateResource.Cache
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.exe
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.pdb
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.exe
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.pdb

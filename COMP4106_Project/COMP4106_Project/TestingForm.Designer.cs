@@ -1,6 +1,6 @@
 ﻿namespace COMP4106_Project
 {
-    partial class Form1
+    partial class TestingForm
     {
         /// <summary>
         /// Required designer variable.
