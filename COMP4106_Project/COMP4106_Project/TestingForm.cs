@@ -18,6 +18,13 @@ namespace COMP4106_Project
             txtGame.Font = new Font(FontFamily.GenericMonospace, txtGame.Font.Size); ;
 
             Board b = new Board();
+
+
+            b.MakeMove(0, new Move[] { 
+                new Move(2, MoveType.Move, Direction.Right) 
+            });
+
+
             txtGame.Text = b.ToString();
         }
     }

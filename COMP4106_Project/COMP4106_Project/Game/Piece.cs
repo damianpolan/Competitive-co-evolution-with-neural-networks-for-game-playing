@@ -24,12 +24,17 @@ namespace COMP4106_Project.Game
             this.vision = PAWN_VISION;
             this.defence = PAWN_DEFENCE;
             base.type = "pawn";
-
         }
 
-        public void Attack(Direction direction)
+        public void damage()
         {
-            throw new NotImplementedException();
+            health--;
         }
+
+        public bool isDead()
+        {
+            return health <= 0;
+        }
+
     }
 }

@@ -102,7 +102,32 @@ namespace COMP4106_Project.Game
             {
                 if (moves[i].type == MoveType.Attack)
                 {
-
+                    Piece p = getPieceWithId(moves[i].pieceId);
+                    Point attLoc = getDisplacedLoc(p.x, p.y, moves[i].direction);
+                    BoardLocation targetP = pieces[attLoc.X, attLoc.Y];
+                    if (targetP.type.Equals("pawn") || targetP.type.Equals("king")) // must attack valid pieces
+                    {
+                        Piece targetPiece = (Piece)targetP;
+                        if (targetPiece.player != p.player) //no friendly fire
+                        {
+                            targetPiece.damage(); //do the damage
+                        }
+                    }
+                }
+            }
+            //clean up dead phase ( should be done after attack phase )
+            for (int y = 0; y < pieces.GetLength(1); y++)
+            {
+                for (int x = 0; x < pieces.GetLength(0); x++)
+                {
+                    if (pieces[x, y] is Piece)
+                    {
+                        Piece piece = (Piece)pieces[x, y];
+                        if (piece.isDead())
+                        {
+                            pieces[x, y] = new BoardLocation(x, y);
+                        }
+                    }
                 }
             }
 
@@ -112,6 +137,7 @@ namespace COMP4106_Project.Game
                 if (moves[i].type == MoveType.Move)
                 {
                     Piece p = getPieceWithId(moves[i].pieceId);
+                    if (p == null) continue;
                     Point gotoL = getDisplacedLoc(p.x, p.y, moves[i].direction);
 
                     if (pieces[gotoL.X, gotoL.Y].type.Equals("none"))
@@ -120,19 +146,27 @@ namespace COMP4106_Project.Game
                         //valid move, check if other pieces are trying to move into here
                         for (int j = 0; j < moves.Length; j++)
                         {
-                            Piece p2 = getPieceWithId(moves[i].pieceId);
-                            Point gotoL2 = getDisplacedLoc(p.x, p.y, moves[i].direction);
-                            if (gotoL.Equals(gotoL2))
+                            if (j != i)
                             {
-                                anyOtherPieces = true;
-                                j = moves.Length;
+                                Piece p2 = getPieceWithId(moves[i].pieceId);
+                                Point gotoL2 = getDisplacedLoc(p.x, p.y, moves[i].direction);
+                                if (gotoL.Equals(gotoL2))
+                                {
+                                    anyOtherPieces = true;
+                                    j = moves.Length;
+                                }
                             }
                         }
 
                         if (!anyOtherPieces)//the move can be made
                         {
                             pieces[p.x, p.y] = pieces[gotoL.X, gotoL.Y];
+                            pieces[p.x, p.y].x = p.x;
+                            pieces[p.x, p.y].y = p.y;
+
                             pieces[gotoL.X, gotoL.Y] = p;
+                            p.x = gotoL.X;
+                            p.y = gotoL.Y;
                         }
                         else { } //invalid move
                     }
@@ -190,7 +224,7 @@ namespace COMP4106_Project.Game
                         s += "X";
                     else if (pieces[x, y].type.Equals("king") && ((Piece)pieces[x, y]).player == 1)
                         s += "O";
-                    else 
+                    else
                         s += "E"; // E for invalid
                     s += "  ";
                 }
