@@ -15,7 +15,10 @@ namespace COMP4106_Project
         public TestingForm()
         {
             InitializeComponent();
+            txtGame.Font = new Font(FontFamily.GenericMonospace, txtGame.Font.Size); ;
+
             Board b = new Board();
+            txtGame.Text = b.ToString();
         }
     }
 }

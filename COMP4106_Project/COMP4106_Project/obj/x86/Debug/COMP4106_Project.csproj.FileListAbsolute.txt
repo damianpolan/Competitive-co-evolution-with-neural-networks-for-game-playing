@@ -4,3 +4,4 @@ C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\De
 C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.pdb
 C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.exe
 C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.pdb
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.TestingForm.resources

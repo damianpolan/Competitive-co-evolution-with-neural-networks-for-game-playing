@@ -15,6 +15,7 @@ namespace COMP4106_Project.Game
 
         private const int BOARD_SIZE = 30; // static board size and pawn count for simplicity
         //pawn count = 5
+        // + 1 king
 
         public Board()
         {
@@ -43,19 +44,19 @@ namespace COMP4106_Project.Game
              * 
              */
             int kingY = BOARD_SIZE / 2;
-            pieces[0, kingY] = new KingPiece(0, kingY, 0);//king in middle left for player one
-            pieces[1, kingY] = new Piece(1, kingY, 0);
-            pieces[1, kingY - 1] = new Piece(1, kingY - 1, 0);
-            pieces[1, kingY + 1] = new Piece(1, kingY + 1, 0);
-            pieces[1, kingY - 2] = new Piece(1, kingY - 2, 0);
-            pieces[1, kingY + 2] = new Piece(1, kingY + 2, 0);
+            pieces[1, kingY] = new KingPiece(1, kingY, 0);//king in middle left for player one
+            pieces[2, kingY] = new Piece(2, kingY, 0);
+            pieces[2, kingY - 1] = new Piece(2, kingY - 1, 0);
+            pieces[2, kingY + 1] = new Piece(2, kingY + 1, 0);
+            pieces[2, kingY - 2] = new Piece(2, kingY - 2, 0);
+            pieces[2, kingY + 2] = new Piece(2, kingY + 2, 0);
 
-            pieces[BOARD_SIZE - 1, kingY] = new KingPiece(BOARD_SIZE - 1, kingY, 0);//king in middle left for player one
-            pieces[BOARD_SIZE - 2, kingY] = new Piece(BOARD_SIZE - 2, kingY, 0);
-            pieces[BOARD_SIZE - 2, kingY - 1] = new Piece(BOARD_SIZE - 2, kingY - 1, 0);
-            pieces[BOARD_SIZE - 2, kingY + 1] = new Piece(BOARD_SIZE - 2, kingY + 1, 0);
-            pieces[BOARD_SIZE - 2, kingY - 2] = new Piece(BOARD_SIZE - 2, kingY - 2, 0);
-            pieces[BOARD_SIZE - 2, kingY + 2] = new Piece(BOARD_SIZE - 2, kingY + 2, 0);
+            pieces[BOARD_SIZE - 2, kingY] = new KingPiece(BOARD_SIZE - 2, kingY, 1);//king in middle right for player two
+            pieces[BOARD_SIZE - 3, kingY] = new Piece(BOARD_SIZE - 3, kingY, 1);
+            pieces[BOARD_SIZE - 3, kingY - 1] = new Piece(BOARD_SIZE - 3, kingY - 1, 1);
+            pieces[BOARD_SIZE - 3, kingY + 1] = new Piece(BOARD_SIZE - 3, kingY + 1, 1);
+            pieces[BOARD_SIZE - 3, kingY - 2] = new Piece(BOARD_SIZE - 3, kingY - 2, 1);
+            pieces[BOARD_SIZE - 3, kingY + 2] = new Piece(BOARD_SIZE - 3, kingY + 2, 1);
 
 
             //generate random block obstacles and border blocks
@@ -128,11 +129,10 @@ namespace COMP4106_Project.Game
                             }
                         }
 
-                        if (!anyOtherPieces)
+                        if (!anyOtherPieces)//the move can be made
                         {
-                            //the move can be made
-
-
+                            pieces[p.x, p.y] = pieces[gotoL.X, gotoL.Y];
+                            pieces[gotoL.X, gotoL.Y] = p;
                         }
                         else { } //invalid move
                     }
@@ -172,13 +172,33 @@ namespace COMP4106_Project.Game
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            String s = "";
+
+            for (int y = 0; y < pieces.GetLength(1); y++)
+            {
+                for (int x = 0; x < pieces.GetLength(0); x++)
+                {
+                    if (pieces[x, y].type.Equals("block"))
+                        s += "#";
+                    else if (pieces[x, y].type.Equals("none"))
+                        s += "-";
+                    else if (pieces[x, y].type.Equals("pawn") && ((Piece)pieces[x, y]).player == 0)
+                        s += "x";
+                    else if (pieces[x, y].type.Equals("pawn") && ((Piece)pieces[x, y]).player == 1)
+                        s += "o";
+                    else if (pieces[x, y].type.Equals("king") && ((Piece)pieces[x, y]).player == 0)
+                        s += "X";
+                    else if (pieces[x, y].type.Equals("king") && ((Piece)pieces[x, y]).player == 1)
+                        s += "O";
+                    else 
+                        s += "E"; // E for invalid
+                    s += "  ";
+                }
+                s += "\n";
+            }
+
+            return s;
         }
-
-        //public Piece[] GetPieces()
-        //{
-        //}
-
 
         protected VisibleState generateLocalState(int playerId)
         {
