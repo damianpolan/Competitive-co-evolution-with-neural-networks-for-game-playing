@@ -142,8 +142,11 @@ namespace COMP4106_Project
 
             if (selectedLocation.type.Equals("pawn") || selectedLocation.type.Equals("king"))
             {
-                allMoves.Add(new Move(((Piece)selectedLocation).id, MoveType.Attack, selectedDir()));
-                lstMoveQueue.Items.Add("ID=" + ((Piece)selectedLocation).id + " Attack " + selectedDir().ToString());
+                if (!alreadyMoved(((Piece)selectedLocation).id))
+                {
+                    allMoves.Add(new Move(((Piece)selectedLocation).id, MoveType.Attack, selectedDir()));
+                    lstMoveQueue.Items.Add("ID=" + ((Piece)selectedLocation).id + " Attack " + selectedDir().ToString());
+                }
             }
         }
 
@@ -151,8 +154,11 @@ namespace COMP4106_Project
         {
             if (selectedLocation.type.Equals("pawn") || selectedLocation.type.Equals("king"))
             {
-                allMoves.Add(new Move(((Piece)selectedLocation).id, MoveType.Move, selectedDir()));
-                lstMoveQueue.Items.Add("ID=" + ((Piece)selectedLocation).id + " Move " + selectedDir().ToString());
+                if (!alreadyMoved(((Piece)selectedLocation).id))
+                {
+                    allMoves.Add(new Move(((Piece)selectedLocation).id, MoveType.Move, selectedDir()));
+                    lstMoveQueue.Items.Add("ID=" + ((Piece)selectedLocation).id + " Move " + selectedDir().ToString());
+                }
             }
         }
 
@@ -160,16 +166,30 @@ namespace COMP4106_Project
         {
             if (selectedLocation.type.Equals("pawn") || selectedLocation.type.Equals("king"))
             {
-                allMoves.Add(new Move(((Piece)selectedLocation).id, MoveType.Defend, selectedDir()));
-                lstMoveQueue.Items.Add("ID=" + ((Piece)selectedLocation).id + " Defend " + selectedDir().ToString());
+                if (!alreadyMoved(((Piece)selectedLocation).id))
+                {
+                    allMoves.Add(new Move(((Piece)selectedLocation).id, MoveType.Defend, selectedDir()));
+                    lstMoveQueue.Items.Add("ID=" + ((Piece)selectedLocation).id + " Defend " + selectedDir().ToString());
+                }
             }
         }
 
-
+        private bool alreadyMoved(int pieceId)
+        {
+            for (int i = 0; i < allMoves.Count; i++)
+            {
+                if (allMoves[i].pieceId.Equals(pieceId))
+                    return true;
+            }
+            return false;
+        }
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
-            lstMoveQueue.ClearSelected();
+            board.MakeMove(allMoves.ToArray());
+            displayBoard();
+            lstMoveQueue.Items.Clear();
+            allMoves.Clear();
         }
 
     }

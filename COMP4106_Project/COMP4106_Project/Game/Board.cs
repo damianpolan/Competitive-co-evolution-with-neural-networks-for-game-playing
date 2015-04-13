@@ -95,7 +95,7 @@ namespace COMP4106_Project.Game
         /// </summary>
         /// <param name="playerId"></param>
         /// <param name="moves"></param>
-        public void MakeMove(int playerId, Move[] moves)
+        public void MakeMove(Move[] moves)
         {
             //attack/defend phase first
             for (int i = 0; i < moves.Length; i++)
@@ -148,8 +148,8 @@ namespace COMP4106_Project.Game
                         {
                             if (j != i)
                             {
-                                Piece p2 = getPieceWithId(moves[i].pieceId);
-                                Point gotoL2 = getDisplacedLoc(p.x, p.y, moves[i].direction);
+                                Piece p2 = getPieceWithId(moves[j].pieceId);
+                                Point gotoL2 = getDisplacedLoc(p2.x, p2.y, moves[j].direction);
                                 if (gotoL.Equals(gotoL2))
                                 {
                                     anyOtherPieces = true;
