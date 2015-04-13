@@ -11,7 +11,7 @@ namespace COMP4106_Project.Game
         public static Random rndGen = new Random();
 
 
-        private BoardLocation[,] pieces;//[x,y]
+        public BoardLocation[,] pieces;//[x,y]
 
         private const int BOARD_SIZE = 30; // static board size and pawn count for simplicity
         //pawn count = 5
@@ -212,26 +212,31 @@ namespace COMP4106_Project.Game
             {
                 for (int x = 0; x < pieces.GetLength(0); x++)
                 {
-                    if (pieces[x, y].type.Equals("block"))
-                        s += "#";
-                    else if (pieces[x, y].type.Equals("none"))
-                        s += "-";
-                    else if (pieces[x, y].type.Equals("pawn") && ((Piece)pieces[x, y]).player == 0)
-                        s += "x";
-                    else if (pieces[x, y].type.Equals("pawn") && ((Piece)pieces[x, y]).player == 1)
-                        s += "o";
-                    else if (pieces[x, y].type.Equals("king") && ((Piece)pieces[x, y]).player == 0)
-                        s += "X";
-                    else if (pieces[x, y].type.Equals("king") && ((Piece)pieces[x, y]).player == 1)
-                        s += "O";
-                    else
-                        s += "E"; // E for invalid
+                    s += stringOf(pieces[x, y]);
                     s += "  ";
                 }
                 s += "\n";
             }
 
             return s;
+        }
+
+        public string stringOf(BoardLocation p)
+        {
+            if (p.type.Equals("block"))
+                return "#";
+            else if (p.type.Equals("none"))
+                return "-";
+            else if (p.type.Equals("pawn") && ((Piece)p).player == 0)
+                return "x";
+            else if (p.type.Equals("pawn") && ((Piece)p).player == 1)
+                return "o";
+            else if (p.type.Equals("king") && ((Piece)p).player == 0)
+                return "X";
+            else if (p.type.Equals("king") && ((Piece)p).player == 1)
+                return "O";
+            else
+                return "E"; // E for invalid
         }
 
         protected VisibleState generateLocalState(int playerId)
