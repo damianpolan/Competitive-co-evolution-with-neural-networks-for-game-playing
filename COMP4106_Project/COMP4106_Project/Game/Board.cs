@@ -13,6 +13,9 @@ namespace COMP4106_Project.Game
 
         public BoardLocation[,] pieces;//[x,y]
 
+
+        private List<Piece> player_0_pieces, player_1_pieces;
+
         private const int BOARD_SIZE = 30; // static board size and pawn count for simplicity
         //pawn count = 5
         // + 1 king
@@ -44,19 +47,51 @@ namespace COMP4106_Project.Game
              * 
              */
             int kingY = BOARD_SIZE / 2;
-            pieces[1, kingY] = new KingPiece(1, kingY, 0);//king in middle left for player one
-            pieces[2, kingY] = new Piece(2, kingY, 0);
-            pieces[2, kingY - 1] = new Piece(2, kingY - 1, 0);
-            pieces[2, kingY + 1] = new Piece(2, kingY + 1, 0);
-            pieces[2, kingY - 2] = new Piece(2, kingY - 2, 0);
-            pieces[2, kingY + 2] = new Piece(2, kingY + 2, 0);
 
-            pieces[BOARD_SIZE - 2, kingY] = new KingPiece(BOARD_SIZE - 2, kingY, 1);//king in middle right for player two
-            pieces[BOARD_SIZE - 3, kingY] = new Piece(BOARD_SIZE - 3, kingY, 1);
-            pieces[BOARD_SIZE - 3, kingY - 1] = new Piece(BOARD_SIZE - 3, kingY - 1, 1);
-            pieces[BOARD_SIZE - 3, kingY + 1] = new Piece(BOARD_SIZE - 3, kingY + 1, 1);
-            pieces[BOARD_SIZE - 3, kingY - 2] = new Piece(BOARD_SIZE - 3, kingY - 2, 1);
-            pieces[BOARD_SIZE - 3, kingY + 2] = new Piece(BOARD_SIZE - 3, kingY + 2, 1);
+            //PLAYER 0
+            player_0_pieces = new List<Piece>();
+            
+            player_0_pieces.Add(new KingPiece(1, kingY, 0));
+            pieces[1, kingY] = player_0_pieces[player_0_pieces.Count - 1];//king in middle left for player one
+
+            player_0_pieces.Add(new Piece(2, kingY, 0));
+            pieces[2, kingY] = player_0_pieces[player_0_pieces.Count - 1];
+
+            player_0_pieces.Add(new Piece(2, kingY - 1, 0));
+            pieces[2, kingY - 1] = player_0_pieces[player_0_pieces.Count - 1];
+
+            player_0_pieces.Add(new Piece(2, kingY + 1, 0));
+            pieces[2, kingY + 1] = player_0_pieces[player_0_pieces.Count - 1];
+
+            player_0_pieces.Add(new Piece(2, kingY - 2, 0));
+            pieces[2, kingY - 2] = player_0_pieces[player_0_pieces.Count - 1];
+
+            player_0_pieces.Add(new Piece(2, kingY + 2, 0));
+            pieces[2, kingY + 2] = player_0_pieces[player_0_pieces.Count - 1];
+
+
+            //PLAYER 1
+
+            player_1_pieces = new List<Piece>();
+
+            player_1_pieces.Add(new KingPiece(BOARD_SIZE - 2, kingY, 1));
+            pieces[BOARD_SIZE - 2, kingY] = player_0_pieces[player_1_pieces.Count - 1];//king in middle left for player one
+
+            player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY, 1));
+            pieces[BOARD_SIZE - 3, kingY] = player_0_pieces[player_1_pieces.Count - 1];
+
+            player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY - 1, 1));
+            pieces[BOARD_SIZE - 3, kingY - 1] = player_0_pieces[player_1_pieces.Count - 1];
+
+            player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY + 1, 1));
+            pieces[BOARD_SIZE - 3, kingY + 1] = player_0_pieces[player_1_pieces.Count - 1];
+
+            player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY - 2, 1));
+            pieces[BOARD_SIZE - 3, kingY - 2] = player_0_pieces[player_1_pieces.Count - 1];
+
+            player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY + 2, 1));
+            pieces[BOARD_SIZE - 3, kingY + 2] = player_0_pieces[player_1_pieces.Count - 1];
+
 
 
             //generate random block obstacles and border blocks
@@ -77,7 +112,16 @@ namespace COMP4106_Project.Game
 
         private Piece getPieceWithId(int pieceID)
         {
-            foreach (BoardLocation bl in pieces)
+            foreach (BoardLocation bl in player_0_pieces)
+            {
+                if (bl is Piece)
+                {
+                    if (((Piece)bl).id == pieceID)
+                        return (Piece)bl;
+                }
+            }
+
+            foreach (BoardLocation bl in player_1_pieces)
             {
                 if (bl is Piece)
                 {
@@ -191,7 +235,9 @@ namespace COMP4106_Project.Game
 
         public VisibleState GetVisibleStateForPlayer(int playerId)
         {
-            throw new NotImplementedException();
+            Point king_index;
+
+            return null;
         }
 
         public bool IsGameOver()
@@ -241,12 +287,78 @@ namespace COMP4106_Project.Game
 
         protected VisibleState generateLocalState(int playerId)
         {
-            throw new NotImplementedException();
+            bool[,] vis_map = getVisionMap(playerId);
+
+            BoardLocation[,] bl = new BoardLocation[BOARD_SIZE, BOARD_SIZE];
+
+            for(int x = 0; x < BOARD_SIZE; x++)
+            {
+                for(int y = 0; y < BOARD_SIZE; y++)
+                {
+                    if(vis_map[x,y])
+                    {
+                        bl[x, y] = pieces[x, y];
+                    }
+                }
+            }
+
+            List<Piece> player_pieces, opponent_pieces;
+
+            if(playerId == 0)
+            {
+                player_pieces = player_0_pieces;
+                opponent_pieces = player_1_pieces;
+            }
+            else
+            {
+                player_pieces = player_1_pieces;
+                opponent_pieces = player_0_pieces;
+            }
+
+
+            //remove opponent pieces not visible
+            for(int i = 0; i < opponent_pieces.Count; i++)
+            {
+                Piece p = opponent_pieces[i];
+
+                if (!vis_map[p.x,p.y])
+                    opponent_pieces.Remove(p);
+            }
+
+            return new VisibleState(bl, player_pieces,, opponent_pieces);
         }
 
-        protected Piece getPiece(int id)
+        protected bool[,] getVisionMap(int playerId)
         {
-            throw new NotImplementedException();
+            bool[,] vis_map = new bool[BOARD_SIZE, BOARD_SIZE];
+
+            List<Piece> player_pieces = playerId == 0 ? player_0_pieces : player_1_pieces;
+
+            foreach (Piece piece in player_pieces)
+            {
+                for (int x = -piece.vision; x <= piece.vision; x++)
+                {
+                    for (int y = -piece.vision; y <= piece.vision; y++)
+                    {
+                        int relX = piece.x - x;
+                        int relY = piece.y - y;
+
+                        //within grid and vision radius
+                        if (relX >= 0 && relX < BOARD_SIZE && relY >= 0 && relY < BOARD_SIZE
+                            && Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2)) <= piece.vision)
+                        {
+                            // not already visible
+                            if (!vis_map[relX, relY])
+                            {
+                                //much simpler to just use radius, no need to raycast
+                                vis_map[relX, relY] = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return vis_map;
         }
 
     }

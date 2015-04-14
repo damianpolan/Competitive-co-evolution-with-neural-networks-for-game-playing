@@ -5,3 +5,11 @@ C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\De
 C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.exe
 C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.pdb
 C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.TestingForm.resources
+D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.exe
+D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.pdb
+D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.csprojResolveAssemblyReference.cache
+D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.Properties.Resources.resources
+D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.TestingForm.resources
+D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.csproj.GenerateResource.Cache
+D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.exe
+D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.pdb

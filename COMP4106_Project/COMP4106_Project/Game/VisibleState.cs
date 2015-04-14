@@ -7,11 +7,11 @@ namespace COMP4106_Project.Game
 {
     public class VisibleState
     {
-        public Piece[][] board;
+        public BoardLocation[][] board;
         public Piece[] player;
         public Piece[] enemy;
 
-        public VisibleState(Piece[][] boardPieces, Piece[] playerPieces, Piece[] enemyPieces)
+        public VisibleState(BoardLocation[][] boardPieces, Piece[] playerPieces, Piece[] enemyPieces)
         {
             this.board = boardPieces;
             this.player = playerPieces;
