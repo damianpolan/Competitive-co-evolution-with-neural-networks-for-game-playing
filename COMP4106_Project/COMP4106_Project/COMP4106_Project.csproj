@@ -34,6 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge.Genetic, Version=2.2.4.0, Culture=neutral, PublicKeyToken=4336634eeb41b69b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\AForge.NET\Framework\Release\AForge.Genetic.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Neuro, Version=2.2.5.0, Culture=neutral, PublicKeyToken=2094f4ea39731d4f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\AForge.NET\Framework\Release\AForge.Neuro.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,13 +54,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\AI\BatchAIGamePlayer.cs" />
+    <Compile Include="Game\AI\Damian\NNInputPipe.cs" />
+    <Compile Include="Game\AI\Damian\NN_AI.cs" />
     <Compile Include="TestingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TestingForm.Designer.cs">
       <DependentUpon>TestingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game\AI.cs" />
+    <Compile Include="Game\AI\AI.cs" />
     <Compile Include="Game\Block.cs" />
     <Compile Include="Game\Board.cs" />
     <Compile Include="Game\BoardLocation.cs" />
@@ -63,7 +74,7 @@
     <Compile Include="Game\Pieces.cs" />
     <Compile Include="Game\MoveType.cs" />
     <Compile Include="Game\VisibleState.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Game\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -325,7 +325,8 @@ namespace COMP4106_Project.Game
                     opponent_pieces.Remove(p);
             }
 
-            return new VisibleState(bl, player_pieces,, opponent_pieces);
+            //return new VisibleState(bl, player_pieces, opponent_pieces);
+            return null;
         }
 
         protected bool[,] getVisionMap(int playerId)

@@ -7,10 +7,10 @@ namespace COMP4106_Project.Game
 {
     public class Piece : BoardLocation
     {
-        static int idCounter = 0;
-        static int STARTING_HEALTH = 4;
-        static int PAWN_VISION = 3;
-        static int PAWN_DEFENCE = 0;
+        public static int idCounter = 0;
+        public static int STARTING_HEALTH = 4;
+        public static int PAWN_VISION = 3;
+        public static int PAWN_DEFENCE = 0;
 
 
         public int id, player, health, vision, defence;

@@ -13,3 +13,12 @@ D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\
 D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.csproj.GenerateResource.Cache
 D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.exe
 D:\_School\COMP 4106\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.pdb
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\AForge.Genetic.dll
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\AForge.Neuro.dll
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\AForge.dll
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\AForge.Math.dll
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\AForge.Genetic.xml
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\AForge.Neuro.xml
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\AForge.xml
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\bin\Debug\AForge.Math.xml
+C:\Users\Damian\School\COMP4106_Project\COMP4106_Project\COMP4106_Project\obj\x86\Debug\COMP4106_Project.csprojResolveAssemblyReference.cache

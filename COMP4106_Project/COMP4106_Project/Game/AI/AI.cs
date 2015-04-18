@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace COMP4106_Project.Game
+namespace COMP4106_Project.Game.AI
 {
     public abstract class AI
     {
