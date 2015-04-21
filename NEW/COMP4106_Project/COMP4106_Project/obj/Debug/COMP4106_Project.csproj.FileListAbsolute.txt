@@ -1,0 +1,6 @@
+D:\_School\COMP 4106\Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.exe.config
+D:\_School\COMP 4106\Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.exe
+D:\_School\COMP 4106\Project\COMP4106_Project\COMP4106_Project\bin\Debug\COMP4106_Project.pdb
+D:\_School\COMP 4106\Project\COMP4106_Project\COMP4106_Project\obj\Debug\COMP4106_Project.csprojResolveAssemblyReference.cache
+D:\_School\COMP 4106\Project\COMP4106_Project\COMP4106_Project\obj\Debug\COMP4106_Project.exe
+D:\_School\COMP 4106\Project\COMP4106_Project\COMP4106_Project\obj\Debug\COMP4106_Project.pdb
