@@ -23,7 +23,7 @@ namespace COMP4106_Project.Game
             this.health = STARTING_HEALTH;
             this.vision = PAWN_VISION;
             this.defence = PAWN_DEFENCE;
-            base.type = "pawn";
+            base.type = "pawn"; 
         }
 
         public void damage()

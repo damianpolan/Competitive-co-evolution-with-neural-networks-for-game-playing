@@ -67,6 +67,12 @@ namespace COMP4106_Project.Game.AI.Damian
 
             double healthRatio = (double) Piece.STARTING_HEALTH / (double) relState.self.health;
 
+
+            Console.WriteLine("Inputs - Perspective Simple");
+            Console.WriteLine("Inputs - Perspective Simple");
+            Console.WriteLine("Inputs - Perspective Simple");
+            Console.WriteLine("Inputs - Perspective Simple");
+
             return new double[] { inputFunctionN, inputFunctionE, inputFunctionS, inputFunctionW, healthRatio };
         }
         

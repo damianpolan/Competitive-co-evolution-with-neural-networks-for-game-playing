@@ -15,6 +15,7 @@ namespace COMP4106_Project.Game
 
 
         private List<Piece> player_0_pieces, player_1_pieces;
+        private List<BoardLocation> blocks;
 
         private const int BOARD_SIZE = 30; // static board size and pawn count for simplicity
         //pawn count = 5
@@ -24,6 +25,7 @@ namespace COMP4106_Project.Game
         {
             pieces = new BoardLocation[BOARD_SIZE, BOARD_SIZE]; //x,y
 
+            blocks = new List<BoardLocation>();
             //assign blank values
             for (int x = 0; x < pieces.GetLength(0); x++)
                 for (int y = 0; y < pieces.GetLength(1); y++)
@@ -31,6 +33,7 @@ namespace COMP4106_Project.Game
                     if (x == 0 || y == 0 || x == pieces.GetLength(0) - 1 || y == pieces.GetLength(1) - 1)
                     {
                         pieces[x, y] = new Block(x, y);
+                        blocks.Add(pieces[x, y]);
                     }
                     else
                         pieces[x, y] = new BoardLocation(x, y);
@@ -50,7 +53,7 @@ namespace COMP4106_Project.Game
 
             //PLAYER 0
             player_0_pieces = new List<Piece>();
-            
+
             player_0_pieces.Add(new KingPiece(1, kingY, 0));
             pieces[1, kingY] = player_0_pieces[player_0_pieces.Count - 1];//king in middle left for player one
 
@@ -75,22 +78,22 @@ namespace COMP4106_Project.Game
             player_1_pieces = new List<Piece>();
 
             player_1_pieces.Add(new KingPiece(BOARD_SIZE - 2, kingY, 1));
-            pieces[BOARD_SIZE - 2, kingY] = player_0_pieces[player_1_pieces.Count - 1];//king in middle left for player one
+            pieces[BOARD_SIZE - 2, kingY] = player_1_pieces[player_1_pieces.Count - 1];//king in middle left for player one
 
             player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY, 1));
-            pieces[BOARD_SIZE - 3, kingY] = player_0_pieces[player_1_pieces.Count - 1];
+            pieces[BOARD_SIZE - 3, kingY] = player_1_pieces[player_1_pieces.Count - 1];
 
             player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY - 1, 1));
-            pieces[BOARD_SIZE - 3, kingY - 1] = player_0_pieces[player_1_pieces.Count - 1];
+            pieces[BOARD_SIZE - 3, kingY - 1] = player_1_pieces[player_1_pieces.Count - 1];
 
             player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY + 1, 1));
-            pieces[BOARD_SIZE - 3, kingY + 1] = player_0_pieces[player_1_pieces.Count - 1];
+            pieces[BOARD_SIZE - 3, kingY + 1] = player_1_pieces[player_1_pieces.Count - 1];
 
             player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY - 2, 1));
-            pieces[BOARD_SIZE - 3, kingY - 2] = player_0_pieces[player_1_pieces.Count - 1];
+            pieces[BOARD_SIZE - 3, kingY - 2] = player_1_pieces[player_1_pieces.Count - 1];
 
             player_1_pieces.Add(new Piece(BOARD_SIZE - 3, kingY + 2, 1));
-            pieces[BOARD_SIZE - 3, kingY + 2] = player_0_pieces[player_1_pieces.Count - 1];
+            pieces[BOARD_SIZE - 3, kingY + 2] = player_1_pieces[player_1_pieces.Count - 1];
 
 
 
@@ -103,6 +106,7 @@ namespace COMP4106_Project.Game
                 if (pieces[rX, rY].type.Equals("none"))
                 {
                     pieces[rX, rY] = new Block(rX, rY);
+                    blocks.Add(pieces[rX, rY]);
                     numberOfBlocks--;
                 }
             }
@@ -235,14 +239,17 @@ namespace COMP4106_Project.Game
 
         public VisibleState GetVisibleStateForPlayer(int playerId)
         {
-            Point king_index;
+            if (playerId == 0)
+                return new VisibleState(pieces, player_0_pieces.ToArray(), player_1_pieces.ToArray(), blocks.ToArray());
 
             return null;
         }
 
         public bool IsGameOver()
         {
-            throw new NotImplementedException();
+            if (player_0_pieces[0].isDead() || player_1_pieces[0].isDead())
+                return true;
+            else return false;
         }
 
         public void Update()
@@ -291,11 +298,11 @@ namespace COMP4106_Project.Game
 
             BoardLocation[,] bl = new BoardLocation[BOARD_SIZE, BOARD_SIZE];
 
-            for(int x = 0; x < BOARD_SIZE; x++)
+            for (int x = 0; x < BOARD_SIZE; x++)
             {
-                for(int y = 0; y < BOARD_SIZE; y++)
+                for (int y = 0; y < BOARD_SIZE; y++)
                 {
-                    if(vis_map[x,y])
+                    if (vis_map[x, y])
                     {
                         bl[x, y] = pieces[x, y];
                     }
@@ -304,7 +311,7 @@ namespace COMP4106_Project.Game
 
             List<Piece> player_pieces, opponent_pieces;
 
-            if(playerId == 0)
+            if (playerId == 0)
             {
                 player_pieces = player_0_pieces;
                 opponent_pieces = player_1_pieces;
@@ -317,11 +324,11 @@ namespace COMP4106_Project.Game
 
 
             //remove opponent pieces not visible
-            for(int i = 0; i < opponent_pieces.Count; i++)
+            for (int i = 0; i < opponent_pieces.Count; i++)
             {
                 Piece p = opponent_pieces[i];
 
-                if (!vis_map[p.x,p.y])
+                if (!vis_map[p.x, p.y])
                     opponent_pieces.Remove(p);
             }
 

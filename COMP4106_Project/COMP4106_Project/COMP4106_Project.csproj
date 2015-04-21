@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Game\AI\BatchAIGamePlayer.cs" />
     <Compile Include="Game\AI\Damian\NNInputPipe.cs" />
+    <Compile Include="Game\AI\Damian\NNTools.cs" />
     <Compile Include="Game\AI\Damian\NN_AI.cs" />
     <Compile Include="TestingForm.cs">
       <SubType>Form</SubType>

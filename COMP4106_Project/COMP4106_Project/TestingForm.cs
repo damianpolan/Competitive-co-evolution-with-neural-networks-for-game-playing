@@ -33,17 +33,60 @@ namespace COMP4106_Project
 
         BoardLocation selectedLocation = null;
 
+
+
+        private Direction getFromPos(int xDif, int yDif)
+        {
+            if (xDif > 0 && yDif == 0)
+            {
+                return Direction.Right;
+            }
+            else if (xDif < 0 && yDif == 0)
+            {
+                return Direction.Left;
+            }
+            else if (xDif == 0 && yDif < 0)
+            {
+                return Direction.Up;
+            }
+            else if (xDif == 0 && yDif > 0)
+            {
+                return Direction.Down;
+            }
+
+            return Direction.None;
+        }
+
+
         public void buttonClick(object sender, MouseEventArgs e)
         {
 
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                selectedLocation = board.pieces[((TButton)sender).x, ((TButton)sender).y];
-                lblInfo1.Text = "SELECTED: " + selectedLocation.type + " [ " + selectedLocation.x + ", " + selectedLocation.y + " ] ";
-
+                if (selectedLocation != null && (selectedLocation.type.Equals("pawn") || selectedLocation.type.Equals("king")))
+                {
+                    BoardLocation clickedP = board.pieces[((TButton)sender).x, ((TButton)sender).y];
+                    if (clickedP.type.Equals("none"))
+                    {
+                        Piece pp = (Piece)selectedLocation;
+                        board.MakeMove(new Move[] { new Move(pp.id, MoveType.Move, getFromPos(clickedP.x - pp.x, clickedP.y - pp.y)) });
+                    }
+                    else if (clickedP.type.Equals("pawn") || clickedP.type.Equals("king"))
+                    {
+                        Piece clickedPP = (Piece)clickedP;
+                        Piece pp = (Piece)selectedLocation;
+                        board.MakeMove(new Move[] { new Move(pp.id, MoveType.Attack, getFromPos(clickedP.x - pp.x, clickedP.y - pp.y)) });
+                    }
+                }
+                else
+                {
+                    selectedLocation = board.pieces[((TButton)sender).x, ((TButton)sender).y];
+                    lblInfo1.Text = "SELECTED: " + selectedLocation.type + " [ " + selectedLocation.x + ", " + selectedLocation.y + " ] ";
+                }
             }
 
 
+            displayBoard();
 
         }
 
